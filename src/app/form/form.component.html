@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Employee payroll form</title>
+        <script defer src="..\JavaScript\employeedetail.js"></script>
+        <script defer src="..\JavaScript\new_home.js"></script>  
+        <script defer src="..\JavaScript\utility.js"></script> 
+        <script defer src="..\JavaScript\site_properties.js"></script>   
+        <script defer src="..\JavaScript\EmployeePayroll.js"></script>   
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet" href=""/>
+        
+    </head>
+    <body>
+    
+        <div id="formId" class="form-content">
+            <form class="form" action="#"  onrest="resetForm()" >
+                <div class="form-head">Employee payroll form</div>
+                <div class="row-content">
+                    <label class="label text" for="name">Name</label>
+                  
+                    <input matInput [(ngModel)]="employee.name" [ngModelOptions]="{standalone: true}">
+                    
+                </div>
+                <div class="row-content">
+                    <label class="label text" for="profile">Profile image</label>
+                    <div>
+                        <mat-radio-group aria-label="Select an option" class="profile-radio-content" [(ngModel)]="employee.profilePhoto" [ngModelOptions]="{standalone: true}">
+                            <label for="">
+                                <mat-radio-button value="..\assets\Profile-images\Ellipse -7.png">
+                                    <img class="profile" id='imagel' src="..\assets\Profile-images\Ellipse -7.png">
+                                </mat-radio-button>
+                            </label>
+                            <label for="">
+                                <mat-radio-button value="..\assets\Profile-images\Ellipse -4.png">
+                                    <img class="profile" id='imagel' src="..\assets\Profile-images\Ellipse -4.png">
+                                </mat-radio-button>
+                            </label>
+                            <label for="">
+                                <mat-radio-button value="..\assets\Profile-images\Ellipse -8.png">
+                                    <img class="profile" id='imagel' src="..\assets\Profile-images\Ellipse -8.png">
+                                </mat-radio-button>
+                            </label>
+                            <label for="">
+                                <mat-radio-button value="..\assets\Profile-images\Ellipse -5.png">
+                                    <img class="profile" id='imagel' src="..\assets\Profile-images\Ellipse -5.png">
+                                </mat-radio-button>
+                            </label>
+
+                        </mat-radio-group>
+                        
+                    </div>
+                </div>
+                <div class="row-content">
+                    <label class="label text" for="gender">Gender</label>
+                    <div>
+                      
+                            <mat-radio-group aria-label="Select an option" class="gender" [(ngModel)]="employee.gender" [ngModelOptions]="{standalone: true}">
+                            <label for="">
+                            <mat-radio-button value="Male">Male</mat-radio-button>
+                            </label>
+                            <label for="">
+                            <mat-radio-button value="Female">Female</mat-radio-button>
+                        </label>
+                          </mat-radio-group>
+                    </div>
+                </div>
+                <div class="row-content">
+                    
+                <label class="label text departments" for="department">Department</label>
+                     <div>
+                        <input class="checkbox" type="checkbox" id="hr" name="department" value="HR" />
+                        <label class="text checkbox-text" for="hr">HR</label>
+                        <input class="checkbox" type="checkbox" id="sales" name="department" value="Sales" />
+                        <label class="text checkbox-text" for="sales">Sales</label>
+                        <input class="checkbox" type="checkbox" id="finance" name="department" value="Finance" />
+                        <label class="text checkbox-text" for="finance">Finance</label>
+                        <input class="checkbox" type="checkbox" id="engineer" name="department" value="Engineer" />
+                        <label  for="engineer">Engineer</label>
+                        <input class="checkbox" type="checkbox" id="others" name="department" value="Others" />
+                        <label class="text checkbox-text" for="others">Others</label>
+                    </div>
+                </div>
+                <div class="row-content">
+            
+                    <label class="label text" for="salary">Salary: </label>
+                    <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Select Salary</mat-label>
+                        <mat-select [(value)]="employee.salary">
+                            <mat-option>None</mat-option>
+                            <mat-option value="400000">400000</mat-option>
+                            <mat-option value="500000">500000</mat-option>
+                            <mat-option value="600000">600000</mat-option>
+                            <mat-option value="700000">700000</mat-option>
+                            <mat-option value="800000">800000</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    </div>                 
+                </div>
+                <div class="row-content">  
+                      <!-- <input matInput [matDatepicker]="picker"> -->
+                      <input matInput [matDatepicker]="picker" [(ngModel)]="employee.startDate" [ngModelOptions]="{standalone: true}">
+                      <mat-hint>MM/DD/YYYY</mat-hint>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>                    
+                </div>
+                <div class="row-content">
+                    <label for="notes" class="label text">Notes</label>
+                    <textarea id="notes" class="input" name="Notes" placeholder="" style="height:100px" [(ngModel)]="employee.notes" [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+                <div class="buttonParent"> 
+                    <button mat-raised-button class="cancel-button" (click)="onAddUser()" id="cancelButton">Cancel</button>
+                    <div class="submit-reset">
+                       
+                        <button mat-raised-button class="button submitButton" id="submitButton" (click)="addEmployeeData()"
+                          *ngIf="this.id == null">Submit</button>
+                            <button mat-raised-button class="button submitButton" id="submitButton" (click)="updateEmployee()"
+                           *ngIf="this.id != null">Update</button>
+                           
+                           <!-- <button mat-raised-button class="submit-button" (click)="addEmployeeData()" id="submitButton">Submit</button> -->
+                           
+                        <button type="reset" mat-raised-button color="resettButton">Reset</button>
+                     </div>
+                     
+                </div>
+                
+            </form>
+        </div>       
+    </body>
+</html>

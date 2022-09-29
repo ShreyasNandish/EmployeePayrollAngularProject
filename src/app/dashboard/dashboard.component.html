@@ -1,0 +1,43 @@
+
+<div class="main-content">
+        <div class="header-content">
+            <div class="emp-detail-text">
+                Employee Details <div class="emp-count"></div>
+            </div>
+            
+            <button class="add-button" (click)="onAddUser()"class="add-button">&#43;Add User</button>
+        </div>
+        <div class="table-main">
+            <table id="table-display" class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Profilephoto</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                    <th>Start Date</th>
+                    <th>notes</th>
+                    <th>Actions</th>
+                </tr>
+                <tr *ngFor="let employee of employeeDetails,let i = index">
+                    <td>{{employee.id}}</td>
+                    <td><img src="{{employee.profilePhoto}}" alt=""></td>
+                    <td>{{employee.name}}</td>
+                    
+                    <td>{{employee.gender}}</td>
+                    <td>{{employee.department}}</td>
+                    <td>{{employee.salary}}</td>
+                    <td>{{employee.startDate}}</td>
+                    <td>{{employee.notes}}</td>
+                    <div class="action-icons">
+                    
+                        <mat-icon class="delete-icon" (click)="deleteEmployee(employee.id)">delete</mat-icon>
+                        <mat-icon class="edit-icon" (click)="editEmployee(employee.id)">edit</mat-icon>
+                      </div>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+
